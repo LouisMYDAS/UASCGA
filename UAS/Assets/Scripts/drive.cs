@@ -39,7 +39,7 @@ public class drive : MonoBehaviour
         else if (translation < 0 && Input.GetKey(KeyCode.LeftShift))
         {
             anim.SetBool("isRunning", true);
-            anim.SetBool("isWalking", false);
+            anim.SetBool("isWalking", true);
             anim.SetBool("isJumping", false);
             anim.SetFloat("botSpeed", -1);
             if (Input.GetKey(KeyCode.Space))
