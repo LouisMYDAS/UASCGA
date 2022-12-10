@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 62
+  controlID: 103
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,8 +120,8 @@ MonoBehaviour:
     y: 567
     width: 1466
     height: 390
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 13}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 68
+  controlID: 93
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 26
+  controlID: 94
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -309,14 +309,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: 3226960827701039176, guid: 79108204c708abe4db3f4f1dcdf09406, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.91593665
+    - e00: 0.52537876
       e01: 0
       e02: 0
-      e03: 335.19983
+      e03: 482.0941
       e10: 0
-      e11: 0.91593665
+      e11: 0.52537876
       e12: 0
-      e13: -137.12766
+      e13: -36.44217
       e20: 0
       e21: 0
       e22: 1
@@ -397,7 +397,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 50700000
     m_LastClickedID: 28752
-    m_ExpandedIDs: 00000000c66e000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000006d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -425,7 +425,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c66e0000
+    m_ExpandedIDs: 00000000006d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -553,9 +553,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7c6e0000
+      m_SelectedIDs: ac6c0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 80f7ffffda5d0000505e0000fe600000
+      m_ExpandedIDs: 1cfbffffee5b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
