@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class drive : MonoBehaviour
 {
-    public float speed = 2.5f;
+    public float speed = 5f;
     public float rotationSpeed = 100.0f;
     Animator anim;
     public static GameObject controlledBy;
@@ -15,7 +15,7 @@ public class drive : MonoBehaviour
         anim = this.GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(controlledBy != null) return;
         float translation = Input.GetAxis("Vertical") * speed;
