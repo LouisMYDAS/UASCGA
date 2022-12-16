@@ -7,6 +7,8 @@ public class drive : MonoBehaviour
     public float speed = 2.5f;
     public float rotationSpeed = 100.0f;
     Animator anim;
+    public static GameObject controlledBy;
+
 
     void Start()
     {
@@ -15,6 +17,7 @@ public class drive : MonoBehaviour
 
     void Update()
     {
+        if(controlledBy != null) return;
         float translation = Input.GetAxis("Vertical") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         translation *= Time.fixedDeltaTime;
