@@ -17,6 +17,9 @@ public class SitOn : MonoBehaviour
 
     void Update()
     {
+        /*if(anim.GetCurrentAnimatorStateInfo(0).IsName("SitDown")){
+            drive.controlledBy = null;
+        }*/
         if(isWalkingTowards){
             AutoWalkingTowards();
         }
@@ -29,12 +32,18 @@ public class SitOn : MonoBehaviour
             isWalkingTowards = true;
             drive.controlledBy = this.gameObject;
         }else{
-            anim.SetBool("isSitting",false);
-            sittingOn = false;
-            isWalkingTowards = false;
-            drive.controlledBy = null;
+            StartCoroutine(StandUp());
         }
     }
+
+     IEnumerator StandUp()
+     {
+        anim.SetBool("isSitting",false);
+        sittingOn = false;
+        isWalkingTowards = false;
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length+anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        drive.controlledBy = null;
+     }
 
     void AutoWalkingTowards(){
         Vector3 targetDir;
