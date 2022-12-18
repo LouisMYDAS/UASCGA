@@ -9,6 +9,8 @@ public class ui : MonoBehaviour
     protected Text d, t, o, p;
     protected string time, date;
     protected int oxy = 81, i = 0;
+    public static bool game_paused;
+    public GameObject pause;
     
     IEnumerator OxyPercent(){
         while (true){
@@ -30,8 +32,9 @@ public class ui : MonoBehaviour
 
     void Start()
     {
-        p = GameObject.Find("isPause").GetComponent<Text>();
-        p.text = "";
+        game_paused = false;
+        // p = GameObject.Find("isPause").GetComponent<Text>();
+        // p.text = "";
 
         o = GameObject.Find("Oxy Per").GetComponent<Text>();
 
@@ -44,29 +47,17 @@ public class ui : MonoBehaviour
             StartCoroutine(GameOver());
 
         else{
-            time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
+           
             date = System.DateTime.UtcNow.ToLocalTime().ToString("dd MMMM yyyy");
-
-            t = GameObject.Find("Time").GetComponent<Text>();
-            t.text = time;
 
             d = GameObject.Find("Date").GetComponent<Text>();
             d.text = date;
 
             if(Input.GetKeyDown(KeyCode.Escape)){
-                if(i == 1){
+                if(!game_paused){
                     EditorApplication.isPaused = true;
-                    p.text = "Game Paused";
-
-                    i--;
-                    Debug.Log("paused = " + i);
-                }
-                else {
-                    EditorApplication.isPaused = false;
-                    p.text = "Unpaused";
-
-                    i++;
-                    Debug.Log("un = " + i);
+                    Time.timeScale = 0;
+                    pause.SetActive(true);
                 }
             }
 
@@ -77,5 +68,21 @@ public class ui : MonoBehaviour
             //     i--;
             // }
         }
+    }
+
+    void FixedUpdate(){
+        if(oxy == 0)
+            StartCoroutine(GameOver());
+        else{
+            time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
+            t = GameObject.Find("Time").GetComponent<Text>();
+            t.text = time;
+        }
+    }
+
+    public void resume(){
+        EditorApplication.isPaused = false;
+        Time.timeScale = 1;
+        pause.SetActive(false);
     }
 }
