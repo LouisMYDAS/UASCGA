@@ -33,8 +33,7 @@ public class ui : MonoBehaviour
     void Start()
     {
         game_paused = false;
-        // p = GameObject.Find("isPause").GetComponent<Text>();
-        // p.text = "";
+        pause.SetActive(false);
 
         o = GameObject.Find("Oxy Per").GetComponent<Text>();
 
@@ -55,10 +54,14 @@ public class ui : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Escape)){
                 if(!game_paused){
-                    EditorApplication.isPaused = true;
                     Time.timeScale = 0;
                     pause.SetActive(true);
                 }
+                else{
+                    Time.timeScale = 1;
+                    pause.SetActive(false);
+                }
+                game_paused = !game_paused;
             }
 
             // if(Input.GetKeyDown(KeyCode.Escape) && i == 1){
@@ -81,8 +84,6 @@ public class ui : MonoBehaviour
     }
 
     public void resume(){
-        EditorApplication.isPaused = false;
-        Time.timeScale = 1;
-        pause.SetActive(false);
+        
     }
 }
