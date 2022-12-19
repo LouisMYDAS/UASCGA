@@ -8,7 +8,7 @@ public class doorLobbyRoom : MonoBehaviour
     public Animator pintuAtas;
     public Animator pintuBawah;
 
-    // static Key.KeyType type = Key.KeyType.White;
+    [SerializeField] private Key.KeyType keyType;
 
     void Start()
     {
@@ -24,16 +24,9 @@ public class doorLobbyRoom : MonoBehaviour
          pintuBawah = gameObject2.GetComponent<Animator> ();
     }
 
-    /*void OnTriggerEnter(Collider other){
-        uiObj.SetActive(true);
-        if(other.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.E)){
-            anim.SetBool("open",true);
-        }
-        else if(Input.GetKeyUp(KeyCode.E)){
-            anim.SetBool("close",true);
-        }
-        
-    }*/
+    public Key.KeyType GetKeyType(){
+        return keyType;
+    }
 
     void OnTriggerStay(Collider other){
         uiObj.SetActive(true);
@@ -52,6 +45,11 @@ public class doorLobbyRoom : MonoBehaviour
         // }
     }
 
+    public void OpenDoor(){
+        pintuAtas.SetBool("isOpen",true);
+        pintuBawah.SetBool("isOpen",true);
+        uiObj.SetActive(false);
+    }
     void OnTriggerExit(){
         uiObj.SetActive(false);
         // anim.SetBool("open",false);

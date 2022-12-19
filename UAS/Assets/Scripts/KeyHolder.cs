@@ -6,10 +6,17 @@ public class KeyHolder : MonoBehaviour
 {
     private List<Key.KeyType> keyList;
     public  GameObject ui;
+    public GameObject uiDenied;
+
+    public GameObject uiGranted;
+    public Light light;
 
     private void Awake(){
          ui.SetActive(false);
+         uiDenied.SetActive(false);
+         uiGranted.SetActive(false);
         keyList = new List<Key.KeyType>();
+       
 
     }
 
@@ -18,7 +25,6 @@ public class KeyHolder : MonoBehaviour
     // }
 
     public void AddKey(Key.KeyType keyType){
-        Debug.Log("Add keyed: " + keyType);
         keyList.Add(keyType);
     }
 
@@ -30,7 +36,7 @@ public class KeyHolder : MonoBehaviour
         return keyList.Contains(keyType);
     }
 
-    private void OnTriggerEnter(Collider collider){
+    private void OnTriggerStay(Collider collider){
 
         Key key = collider.GetComponent<Key>();
         if (key !=null){
@@ -43,19 +49,41 @@ public class KeyHolder : MonoBehaviour
             }
         }
 
+        doorLobbyRoom dlr = collider.GetComponent<doorLobbyRoom>();
+        if(dlr != null){
+            if(Input.GetKeyUp(KeyCode.E)){
+                if(ContainsKey(dlr.GetKeyType())){
+                    RemoveKey(dlr.GetKeyType());
 
+                    dlr.OpenDoor();
+                    light.color  = Color.green;
+                    Destroy(dlr.gameObject);
+                    StartCoroutine(AccessGranted());
+
+                }
+                else{
+                    uiDenied.SetActive(true);
+                }
+            }
+            
+        }
         
-        // if(key != null){
-        //     AddKey(key.GetKeyType());
-        //     Destroy(key.gameObject);
-        // }
+    }
+
+    private IEnumerator AccessGranted()
+    {
+        uiGranted.SetActive(true);
+        yield return new WaitForSeconds(3);
+        uiGranted.SetActive(false);
     }
 
     private void OnTriggerExit(Collider collider){
         Key key = collider.GetComponent<Key>();
         if(key != null){
-        ui.SetActive(false);
+            ui.SetActive(false);
         }
+        uiDenied.SetActive(false);
+        uiGranted.SetActive(false);
 
     }
 }
