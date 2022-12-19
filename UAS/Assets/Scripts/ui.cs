@@ -6,47 +6,77 @@ using UnityEditor;
 
 public class ui : MonoBehaviour
 {
-    protected Text d, t, o, p;
+    protected Text d, t;
     protected string time, date;
-    protected int oxy = 81, i = 0;
+    protected int oxy = 81, j = 0;
     public static bool game_paused;
     public GameObject pause;
     
-    IEnumerator OxyPercent(){
-        while (true){
-            oxy -= 1;
-            o.text = oxy.ToString() + "%";
-            yield return new WaitForSeconds(5);
-        }
-    }
+    // IEnumerator OxyPercent(){
+    //     while (true){
+    //         oxy -= 1;
+    //         o.text = oxy.ToString() + "%";
+    //         yield return new WaitForSeconds(5);
+    //     }
+    // }
 
-    private IEnumerator GameOver(){
-        p.text = "You Died!";
-        yield return new WaitForSeconds (2);
+    // private IEnumerator GameOver(){
+    //     p.text = "You Died!";
+    //     yield return new WaitForSeconds (2);
         
-        p.text = ("Please Start a New Game!");
-        yield return new WaitForSeconds (2);
+    //     p.text = ("Please Start a New Game!");
+    //     yield return new WaitForSeconds (2);
         
-        UnityEditor.EditorApplication.isPlaying = false;
-    }
+    //     UnityEditor.EditorApplication.isPlaying = false;
+    // }
+
+    // void OnTriggerStay(Collider col){
+    //     Debug.Log(col.gameObject.tag);
+
+    //     if(col.gameObject.tag == "Untagged"){
+    //         rt.SetActive(true);
+            
+    //         if(j == 0 || oxy < 100)
+    //             ro.text = "Press E to \nRefill Oxygen";
+
+    //         if(Input.GetKeyUp(KeyCode.E)){
+    //             j = 1;
+    //             oxy = 100;
+    //             o.text = oxy.ToString() + "%";
+    //             ro.text = "Oxygen Refilled!";
+    //         }
+    //     }
+    // }
+
+    // void OnTriggerExit(Collider col){
+    //     rt.SetActive(false);
+    //     ro.text = "";
+    //     j = 0;
+    // }
 
     void Start()
     {
         game_paused = false;
         pause.SetActive(false);
+        // rt.SetActive(false);
 
-        o = GameObject.Find("Oxy Per").GetComponent<Text>();
+        // o = GameObject.Find("Oxy Per").GetComponent<Text>();
+        // p = GameObject.Find("Game Over").GetComponent<Text>();
+        // p.text = "";
+ 
+        // rt = GameObject.Find("TriggerOxy");
+        // ro = GameObject.Find("OxyRefill").GetComponent<Text>();
+        // ro.text = "";
 
-        StartCoroutine(OxyPercent());
+        // StartCoroutine(OxyPercent());
     }
 
     void Update()
     {
-        if(oxy == 0)
-            StartCoroutine(GameOver());
+        // if(oxy == 0)
+        //     StartCoroutine(GameOver());
 
-        else{
-           
+        // else{
             date = System.DateTime.UtcNow.ToLocalTime().ToString("dd MMMM yyyy");
 
             d = GameObject.Find("Date").GetComponent<Text>();
@@ -63,27 +93,16 @@ public class ui : MonoBehaviour
                 }
                 game_paused = !game_paused;
             }
-
-            // if(Input.GetKeyDown(KeyCode.Escape) && i == 1){
-            //     UnityEditor.EditorApplication.isPaused = false;
-            //     p.text = "";
-
-            //     i--;
-            // }
-        }
+        // }
     }
 
     void FixedUpdate(){
-        if(oxy == 0)
-            StartCoroutine(GameOver());
-        else{
+        // if(oxy == 0)
+        //     StartCoroutine(GameOver());
+        // else{
             time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
             t = GameObject.Find("Time").GetComponent<Text>();
             t.text = time;
         }
-    }
-
-    public void resume(){
-        
-    }
+    // }
 }
