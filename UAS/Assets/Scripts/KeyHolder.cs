@@ -9,9 +9,11 @@ public class KeyHolder : MonoBehaviour
     public GameObject uiDenied;
 
     public GameObject uiGranted;
-    public Light light;
+    public Light lampu;
 
     private void Awake(){
+         GameObject gameObject = GameObject.Find("Point Light Tanda");
+         lampu = gameObject.GetComponent<Light> ();
          ui.SetActive(false);
          uiDenied.SetActive(false);
          uiGranted.SetActive(false);
@@ -56,7 +58,7 @@ public class KeyHolder : MonoBehaviour
                     RemoveKey(dlr.GetKeyType());
 
                     dlr.OpenDoor();
-                    light.color  = Color.green;
+                    lampu.color  = Color.green;
                     Destroy(dlr.gameObject);
                     StartCoroutine(AccessGranted());
 
