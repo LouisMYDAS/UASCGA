@@ -15,6 +15,8 @@ public class SitOn : MonoBehaviour
         
     void Start()
     {
+        vcam1.Priority = 1;
+        vcam2.Priority = 0;
         anim = character.GetComponent<Animator>();
     }
 
