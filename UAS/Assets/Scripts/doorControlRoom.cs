@@ -38,6 +38,9 @@ public class doorControlRoom : MonoBehaviour
         if(other.gameObject.tag == "Player" && Input.GetKeyUp(KeyCode.E)){
             pintuAtas.SetBool("isOpen",true);
             pintuBawah.SetBool("isOpen",true);
+            uiObj.SetActive(false);
+            GameObject go = GameObject.Find("DoorTrigger");
+            Destroy(go);
         }
         // else if((Input.GetKeyUp(KeyCode.E)) == false){
         //     pintuAtas.SetBool("isOpen",false);
