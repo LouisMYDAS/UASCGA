@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SitOn : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SitOn : MonoBehaviour
     bool isWalkingTowards = false;
     bool sittingOn = false;
     Animator anim;
+    [SerializeField] CinemachineVirtualCamera vcam1; //3rd person
+    [SerializeField] CinemachineVirtualCamera vcam2; //static person
         
     void Start()
     {
@@ -27,13 +30,18 @@ public class SitOn : MonoBehaviour
 
     void OnMouseDown(){
         if(!sittingOn){
+            sittingOn = true;
+            
             anim.SetBool("isWalking",true);
-            anim.SetFloat("botSpeed",1.0f);
+            anim.SetFloat("botSpeed",1f);
             isWalkingTowards = true;
             drive.controlledBy = this.gameObject;
+            SwitchPriority();
         }else{
+            sittingOn = false;
             StartCoroutine(StandUp());
         }
+        
     }
 
      IEnumerator StandUp()
@@ -41,6 +49,7 @@ public class SitOn : MonoBehaviour
         anim.SetBool("isSitting",false);
         sittingOn = false;
         isWalkingTowards = false;
+        SwitchPriority();
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length+anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
         drive.controlledBy = null;
      }
@@ -72,6 +81,16 @@ public class SitOn : MonoBehaviour
         }else{
             character.transform.position = anchor.transform.position;
             character.transform.rotation = anchor.transform.rotation;
+        }
+    }
+
+    private void SwitchPriority(){
+        if(sittingOn){
+            vcam1.Priority = 0;
+            vcam2.Priority = 1;
+        }else{
+            vcam1.Priority = 1;
+            vcam2.Priority = 0;
         }
     }
 }
