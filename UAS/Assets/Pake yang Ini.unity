@@ -3689,7 +3689,7 @@ GameObject:
   - component: {fileID: 535819843}
   - component: {fileID: 535819844}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light Tanda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4124,7 +4124,7 @@ MonoBehaviour:
   ui: {fileID: 1422214045}
   uiDenied: {fileID: 703070568}
   uiGranted: {fileID: 71697371}
-  light: {fileID: 535819844}
+  lampu: {fileID: 0}
 --- !u!1001 &573294406
 PrefabInstance:
   m_ObjectHideFlags: 0
