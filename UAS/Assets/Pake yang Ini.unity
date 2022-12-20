@@ -4124,7 +4124,7 @@ MonoBehaviour:
   ui: {fileID: 1422214045}
   uiDenied: {fileID: 703070568}
   uiGranted: {fileID: 71697371}
-  light: {fileID: 0}
+  light: {fileID: 535819844}
 --- !u!1001 &573294406
 PrefabInstance:
   m_ObjectHideFlags: 0
